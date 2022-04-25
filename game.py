@@ -106,8 +106,7 @@ while run:
         if start_win == True:
             win_fade.direction = 2
             if win_fade.fade():
-                SCREEN.blit(WIN, (SCREEN_WIDTH // 2 - 350, SCREEN_HEIGHT // 2 - 200))
-                SCREEN.blit(BOUCKET, (SCREEN_WIDTH // 2 - 80, SCREEN_HEIGHT // 2 + 25))
+                SCREEN.blit(WIN, (0, 0))
 
         if player.alive:
             if rock and rock_thrown == False and player.rocks > 0:
@@ -137,6 +136,7 @@ while run:
                             for y, tile in enumerate(row):
                                 world_data[x][y] = int(tile)
                     world = World.World()
+                    # world_data = world.load_level(level)
                     player, health_bar = world.process_data(world_data)
         else:
             screen_scroll = 0
@@ -212,7 +212,6 @@ while run:
             for npc in npcs:
                 if type(npc).__name__ == 'Girl':
                     start_win = True
-                    print("start_win =", start_win)
     pygame.display.update()
 
 pygame.quit()

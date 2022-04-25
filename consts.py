@@ -13,17 +13,15 @@ MOUNTAIN = pygame.image.load("img/Background/mountain.png").convert_alpha()
 SKY = pygame.image.load("img/Background/sky.png").convert_alpha()
 GAME_OVER = pygame.image.load("img/Background/gameover.png").convert_alpha()
 WIN = pygame.image.load("img/Background/win.png").convert_alpha()
-BOUCKET = pygame.image.load("img/Objects/boucket.png").convert_alpha()
-
+WIN = pygame.transform.scale(WIN, (SCREEN_WIDTH, SCREEN_HEIGHT))
 FPS = 60
 SEC = 1500000
 ROWS = 16
 COLS = 150
 #game variables
 GRAVITY = 0.75
-SCROLL_THRESH = 200
-TILE_SIZE = 40
-# TILE_SIZE = SCREEN_HEIGHT // ROWS
+SCROLL_THRESH = 375
+TILE_SIZE = SCREEN_HEIGHT // ROWS
 TILE_TYPES = 26
 
 BG = (144, 201, 120)
