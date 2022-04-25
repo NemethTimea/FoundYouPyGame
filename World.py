@@ -6,6 +6,8 @@ from UI import HealthBar
 from Characters import Player, Enemy, Girl
 from consts import *
 
+import csv
+
 class World():
     obstacle_list = []
     def __init__(self):
@@ -13,10 +15,25 @@ class World():
         self.bg_scroll = 0
         # self.obstacle_list = []
 
+    def load_level(self, level: int):
+        world_data = []
+        for _ in range(ROWS):
+            r = [-1] * COLS
+            world_data.append(r)
+
+        #loadin level data and create world
+        with open(f"API/level{level}_data.csv", newline='') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for x, row in enumerate(reader):
+                for y, tile in enumerate(row):
+                    world_data[x][y] = int(tile)
+
+        return world_data
+
+
     def process_data(self, data):
         self.level_length = len(data[0])
         player = None
-        print(len(img_list))
         for y, row in enumerate(data):
             for x, tile in enumerate(row):
                 if tile >= 0:
@@ -38,7 +55,6 @@ class World():
                         decoration_group.add(decoration)
                     # player
                     elif tile == 15:
-                        print(f"Boy -> X = {x * TILE_SIZE} , Y = {y * TILE_SIZE}")
                         player = Player.Player(x= x * TILE_SIZE, y= y * TILE_SIZE, scale=1, speed=5, nr_of_bullet=20, rocks=10, world= self)
                         player_group.add(player)
                         health_bar = HealthBar.HealthBar(10, 10, player.health, player.health)
