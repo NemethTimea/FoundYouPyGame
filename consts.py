@@ -13,8 +13,9 @@ MOUNTAIN = pygame.image.load("img/Background/mountain.png").convert_alpha()
 SKY = pygame.image.load("img/Background/sky.png").convert_alpha()
 GAME_OVER = pygame.image.load("img/Background/gameover.png").convert_alpha()
 WIN = pygame.image.load("img/Background/win.png").convert_alpha()
-WIN = pygame.transform.scale(WIN, (SCREEN_WIDTH, SCREEN_HEIGHT))
+# WIN = pygame.transform.scale(WIN, (SCREEN_WIDTH, SCREEN_HEIGHT))
 FPS = 60
+
 SEC = 1500000
 ROWS = 16
 COLS = 150
