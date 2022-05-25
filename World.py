@@ -13,7 +13,6 @@ class World():
     def __init__(self):
         self.screen_scroll = 0
         self.bg_scroll = 0
-        # self.obstacle_list = []
 
     def load_level(self, level: int):
         world_data = []

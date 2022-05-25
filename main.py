@@ -1,14 +1,14 @@
 import pygame
 from UI.ScreenFade import ScreenFade
 
-import World, Game
+import game as gm
 from consts import *
 from helpers import *
 
 pygame.init()
 pygame.display.set_caption("Founder")
 
-game = Game.Game()
+game = gm.Game()
 
 clock = pygame.time.Clock()
 
@@ -26,9 +26,13 @@ while run:
         if exit_button.draw(SCREEN):
             run = False
     else:
+        if game.player.alive is False:
+            if exit_button.draw(SCREEN):
+                run = False
         game.update()
         game.handle_fades()
-        game.handle_game()
+        if game.handle_game() is False:
+            game.player.alive = False
         game.handle_collides()
 
     for event in pygame.event.get():

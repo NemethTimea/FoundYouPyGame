@@ -47,8 +47,10 @@ class Game():
         if self.intro_started == 2:
             if self.player.alive:
                 self.__handle_player_alive()
+                return True
             else:
                 self.__handle_player_dead()
+                return False
             
     def handle_fades(self):
         if self.start_intro == True:
@@ -119,22 +121,14 @@ class Game():
                 self.player, self.health_bar = self.world.process_data(self.world_data)
 
     def __handle_player_dead(self):
+        global exit_button
         self.screen_scroll = 0
         self.world.setScreenScroll(self.screen_scroll)
         if self.death_fade.fade():
             SCREEN.blit(GAME_OVER, (SCREEN_WIDTH // 2 - 350, SCREEN_HEIGHT // 2 - 200))
             exit_button = Button.Button(SCREEN_WIDTH // 2 - 80, SCREEN_HEIGHT // 2 + 25, BUTTON_EXIT, 0.85)
             if exit_button.draw(SCREEN):
-                return False
-            if restart_button.draw(SCREEN):
-                self.death_fade.fade_counter = 0
-                self.start_intro = True
-                level = 1
-                self.bg_scroll = 0
-                self.world.setBgScroll(self.bg_scroll)
-                reset_world(self.world)
-                self.world_data = self.world.load_level(level)
-                self.player, self.health_bar = self.world.process_data(self.world_data)
+                pass
 
     def __update_groups(self):
         player_group.update()
